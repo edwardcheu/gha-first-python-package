@@ -80,9 +80,6 @@ jobs:
   build_source_dist:
     name: Build source distribution
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./gha-first-python-package
     steps:
       - uses: actions/checkout@v3
 
@@ -98,14 +95,11 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          path: gha-first-python-package/dist/*.tar.gz
+          path: gha-first-python-package/gha-first-python-package/dist/*.tar.gz
 
   build_wheels:
     name: Build wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
-    defaults:
-      run:
-        working-directory: ./gha-first-python-package
     strategy:
       matrix:
         os: [ubuntu-20.04, windows-2019, macOS-10.15]
@@ -125,7 +119,7 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          path: gha-first-python-package/wheels/*.whl
+          path: gha-first-python-package/gha-first-python-package/wheels/*.whl
   
   publish:
     name: Publish package
@@ -138,15 +132,12 @@ jobs:
       - build_source_dist
       - build_wheels
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./gha-first-python-package
 
     steps:
       - uses: actions/download-artifact@v3
         with:
           name: artifact
-          path: gha-first-python-package/dist
+          path: gha-first-python-package/gha-first-python-package/dist
       
       - uses: pypa/gh-action-pypi-publish@v1.5.0
         with: 
