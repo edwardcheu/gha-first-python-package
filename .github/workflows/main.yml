@@ -95,7 +95,7 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          path: ./first-python-package/dist/*.tar.gz
+          path: ./gha-first-python-package/dist/*.tar.gz
 
   build_wheels:
     name: Build wheels on ${{ matrix.os }}
@@ -119,5 +119,5 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          path: ./first-python-package/wheels/*.whl
+          path: ./gha-first-python-package/wheels/*.whl
   
