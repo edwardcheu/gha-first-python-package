@@ -92,10 +92,11 @@ jobs:
 
       - name: Run build
         run: python -m build --sdist
+        working-directory: gha-first-python-package/
 
       - uses: actions/upload-artifact@v3
         with:
-          path: ./gha-first-python-package/dist/*.tar.gz
+          path: gha-first-python-package/dist/*.tar.gz
 
   build_wheels:
     name: Build wheels on ${{ matrix.os }}
@@ -116,10 +117,11 @@ jobs:
 
       - name: Build wheels
         run: python -m cibuildwheel --output-dir wheels
+        working-directory: gha-first-python-package/
 
       - uses: actions/upload-artifact@v3
         with:
-          path: ./gha-first-python-package/wheels/*.whl
+          path: gha-first-python-package/wheels/*.whl
   
   publish:
     name: Publish package
