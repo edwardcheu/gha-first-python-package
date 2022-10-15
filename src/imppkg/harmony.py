@@ -1,3 +1,6 @@
+"""A command-line interface for calculating the harmonic mean of user-provided numbers.
+"""
+
 import sys
 
 from termcolor import colored
